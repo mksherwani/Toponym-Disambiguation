@@ -1,4 +1,0 @@
-USING PERIODIC COMMIT 1000
-LOAD CSV WITH HEADERS FROM
-'file:///Users/Khan/sample.csv' AS Line
-CREATE (:City {name:Line.name, id:Line.id, altname:Line.alternate_name, latitude:Line.latitude , longitude:Line.longitude, population:Line.population, })
