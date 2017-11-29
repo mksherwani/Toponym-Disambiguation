@@ -1,3 +1,0 @@
-MATCH (parent) where id(parent) = {parent_id}
-MATCH (child) where parent <> child
-MERGE (parent)-[:HAS_CHILD]->(child)
