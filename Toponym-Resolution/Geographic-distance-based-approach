@@ -1,0 +1,4 @@
+MATCH (t:Places) where t.name = "%locationname1" or t.alternatename in ["%locationname1"]
+Match (o:Places) where o.name = "%locationname2" or o.alternatename in ["%locationname2"]
+WITH point({ longitude: t.longitude, latitude: t.latitude }) AS trainPoint, point({ longitude: o.longitude, latitude: o.latitude }) AS officePoint,t,o
+RETURN t.id, t.name, t.ccode, t.latitude, t.longitude, o.id, o.name, o.ccode,o.latitude, o.longitude, distance(trainPoint, officePoint) AS travelDistance order by travelDistance asc limit 1;
