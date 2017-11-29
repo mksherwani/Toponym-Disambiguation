@@ -1,0 +1,4 @@
+match (n:Places) where n.name = "%locationname1" or n.alternatename in ["%locationname1"]
+match (o:Places) where o.name = "%locationname2" or o.alternatename in ["%locationname2"]
+MATCH p=allShortestPaths((n)-[*0..5]-(o))
+return n.id, n.name ,n.ccode, n.population, o.id,o.ccode, o.name,o.population, length(p) as numberofEdgesPassed order by n.population desc, length(p) asc limit 2;
