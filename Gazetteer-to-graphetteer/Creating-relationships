@@ -1,0 +1,93 @@
+MATCH (n:City {featureclass:'A', ccode:'countrycode'})
+where n.featurecode in ['ADM1' , 'ADM2' , 'ADM3', 'ADM4', 'PCLI', 'PCLD', 'PCL', 'PCLF','PCLIX' , 'PCLS']
+SET n:County 
+REMOVE n:City
+RETURN n;
+
+MATCH (n:City {featureclass:'A', ccode:'countrycode'})
+where n.featurecode in ['ADMD']
+SET n:AdminDiv 
+REMOVE n:City
+RETURN n;
+
+
+MATCH (n:City {featureclass:'S' , ccode:'countrycode'})
+SET n:Landmarks 
+REMOVE n:City
+RETURN n;
+
+
+call apoc.periodic.commit("Match (c:County),(r:State)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:Landmarks),(r:County)  where not exists ((c)<-[:Has]-()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 = r.admin3 and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)<-[:Has]-(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:Landmarks),(r:County)  where not exists ((c)<-[:Has]-()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 = r.admin3 with c,r limit {limit} Merge (c)<-[:Has]-(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:Landmarks),(r:County)  where not exists ((c)<-[:Has]-()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 is null and r.admin3 is null with c,r limit {limit} Merge (c)<-[:Has]-(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:Landmarks),(r:County)  where not exists ((c)<-[:Has]-()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is null and  r.admin2 is null and c.admin3 is null and r.admin3 is null with c,r limit {limit} Merge (c)<-[:Has]-(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:Landmarks),(r:County)  where not exists ((c)<-[:Has]-()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is null and  r.admin2 is null and c.admin3 = r.admin3 with c,r limit {limit} Merge (c)<-[:Has]-(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:Landmarks),(r:State)  where not exists ((c)<-[:Has]-()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 is null and  r.admin1 is null with c,r limit {limit} Merge (c)<-[:Has]-(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 = r.admin3 and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 = r.admin3 and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 is NULL and  r.admin3 is NULL and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 is NULL and  r.admin3 is NULL and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 = r.admin3 and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 is NULL and r.admin3 is NULL and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:City),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 = r.admin3 and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:City),(r:State)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 =r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 = r.admin3 and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 = r.admin3 and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County) where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 = r.admin2 and c.admin3 is NULL and  r.admin3 is NULL and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County) where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and  c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 is NULL and  r.admin3 is NULL and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County) where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 = r.admin3 and c.admin4 is NULL and r.admin4 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County) where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 is NULL and r.admin3 is NULL and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:County)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 = r.admin1 and c.admin2 is NULL and r.admin2 is NULL and c.admin3 = r.admin3 and c.admin4 = r.admin4 with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
+
+
+call apoc.periodic.commit("Match (c:AdminDiv),(r:State)  where not exists ((c)-[:IN]->()) and c.ccode = r.ccode and c.cc2 = r.cc2 and c.admin1 is NULL with c,r limit {limit} Merge (c)-[:IN]->(r) Return count(*)",{limit:10000});
