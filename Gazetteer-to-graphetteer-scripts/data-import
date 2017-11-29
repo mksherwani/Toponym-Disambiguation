@@ -1,0 +1,4 @@
+ USING PERIODIC COMMIT 1000
+LOAD CSV WITH HEADERS FROM
+'file:///filename.csv' AS Line
+CREATE (:City {id:Line.id, name1:Line.Name_1, name:Line.Name, alternatename:Line.Alternate_Name, latitude:Line.Latitude , longitude:Line.Longitude, featurecode:Line.Feature_code, featureclass:Line.Feature_class, ccode:Line.Country_code, cc2:Line.ccode, admin1:Line.Adm_1, admin2:Line.Adm_2, admin3:Line.Adm_3, admin4:Line.Adm_4, population:Line.Population, elevation:Line.Elevation, digitalelevation:Line.DEM, timezone:Line.Timezone, date:Line.Date});
