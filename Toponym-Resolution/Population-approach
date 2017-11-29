@@ -1,0 +1,2 @@
+match (c:Places) where c.name = "%locationname" or c.alternatename in ["%locationname"]
+Return c.id, c.name, c.ccode,  c.population, c.latitude, c.longitude order by c.population desc limit 1;
